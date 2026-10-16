@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package product_service;
+option go_package = "github.com/Snowdy54/go_homework/tree/main/homework_2/pkg/api;product_service";
+
+import "google/api/annotations.proto";
+
+
+service Product{
+    rpc GetProduct(GetProductRequest) returns(GetProductResponse) {
+        option (google.api.http) = {
+            get: "/v1/product/{sku}"
+        };
+    }
+}
+
+
+message GetProductRequest {
+    int64 sku = 1;
+}
+
+message GetProductResponse {
+    int64 sku = 1;
+    string name = 2;
+    int32 price = 3;
+}
